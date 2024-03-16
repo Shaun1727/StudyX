@@ -175,7 +175,7 @@ const Footer = () => {
               );
             })}
           </div>
-          <div className="text-center">Made with ❤️ CodeHelp © 2023 StudyX</div>
+          <div className="text-center">Made with ❤️ © 2023 StudyX</div>
         </div>
       </div>
     </div>

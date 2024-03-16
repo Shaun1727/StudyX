@@ -4,12 +4,14 @@ function getRandomInt(max) {
 }
 exports.createCategory = async(req,res)=>{
     try{
+      console.log("Inside category")
         const {name,description} = req.body;
         if (!name) {
 			return res
 				.status(400)
 				.json({ success: false, message: "All fields are required" });
 		}
+
         const CategoryDetails = await Category.create({
             name,description,
         })
