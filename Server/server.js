@@ -16,7 +16,7 @@ const {cloudinaryConnect} = require("./config/cloudinary")
 const cookieParser = require("cookie-parser")
 
 app.use(cors({
-    origin:"https://studyx-backend.onrender.com",
+    origin:"https://studyx-frontend.vercel.app/",
     credentials:true
 }))
 connect()
