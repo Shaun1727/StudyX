@@ -1,4 +1,4 @@
-# StudyX Online Education Platform (MERN App) [Website Link](https://studyX-frontend.vercel.app/)
+# StudyX Online Education Platform (MERN App) [Website Link](https://studyx-frontend.vercel.app/)
 
 ![Main Page](images/MainPage.png)
 

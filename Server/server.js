@@ -16,11 +16,11 @@ const {cloudinaryConnect} = require("./config/cloudinary")
 const cookieParser = require("cookie-parser")
 
 app.use(cors({
-    origin:"http://localhost:3000",
+    origin:"https://studyx-backend.onrender.com",
     credentials:true
 }))
 connect()
-
+// http://localhost:3000
 app.use(cookieParser())
 
 app.use(express.json())
