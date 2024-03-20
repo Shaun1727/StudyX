@@ -19,6 +19,10 @@ app.use(cors({
     origin:"https://studyx-frontend.vercel.app",
     credentials:true
 }))
+// app.use(cors({
+//     origin:"http://localhost:3000",
+//     credentials:true
+// }))
 connect()
 // http://localhost:3000
 app.use(cookieParser())

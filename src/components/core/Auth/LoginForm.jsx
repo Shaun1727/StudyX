@@ -1,5 +1,6 @@
-import { useState } from "react"
+import React, { useState } from "react"
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai"
+import { toast } from "react-hot-toast"
 import { useDispatch } from "react-redux"
 import { Link, useNavigate } from "react-router-dom"
 
@@ -24,11 +25,19 @@ function LoginForm() {
     }))
   }
 
-  const handleOnSubmit = (e) => {
-    e.preventDefault()
-    dispatch(login(email, password, navigate))
+  const validatePassword = () => {
+    const passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*()-_=+{}|;:'\",.<>?])(?=.*[a-zA-Z]).{8,}$/
+    return passwordRegex.test(password)
   }
 
+  const handleOnSubmit = (e) => {
+    e.preventDefault()
+    if (!validatePassword()) {
+      toast.error("Password must contain at least 8 characters, including one uppercase letter, one lowercase letter, one digit, and one special character")
+      return
+    }
+    dispatch(login(email, password, navigate))
+  }
   return (
     <form
       onSubmit={handleOnSubmit}
@@ -66,6 +75,8 @@ function LoginForm() {
             boxShadow: "inset 0px -1px 0px rgba(255, 255, 255, 0.18)",
           }}
           className="w-full rounded-[0.5rem] bg-richblack-800 p-[12px] pr-12 text-richblack-5"
+          {...(showPassword ? {} : { pattern: "^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*()-_=+{}|;:'\",.<>?])(?=.*[a-zA-Z]).{8,}$" })}
+          {...(showPassword ? {} : { title: "Password must contain at least 8 characters, including one uppercase letter, one lowercase letter, one digit, and one special character" })}
         />
         <span
           onClick={() => setShowPassword((prev) => !prev)}

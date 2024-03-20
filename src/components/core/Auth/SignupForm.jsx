@@ -36,11 +36,18 @@ function SignupForm() {
       [e.target.name]: e.target.value,
     }))
   }
-
+  const validatePassword = () => {
+    const passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*()-_=+{}|;:'\",.<>?])(?=.*[a-zA-Z]).{8,}$/
+    return passwordRegex.test(password) && passwordRegex.test(confirmPassword)
+  }
   // Handle Form Submission
   const handleOnSubmit = (e) => {
     e.preventDefault()
 
+    if (!validatePassword()) {
+      toast.error("Password must contain at least 8 characters, including one uppercase letter, one lowercase letter, one digit, and one special character")
+      return
+    }
     if (password !== confirmPassword) {
       toast.error("Passwords Do Not Match")
       return
@@ -156,6 +163,8 @@ function SignupForm() {
                 boxShadow: "inset 0px -1px 0px rgba(255, 255, 255, 0.18)",
               }}
               className="w-full rounded-[0.5rem] bg-richblack-800 p-[12px] pr-10 text-richblack-5"
+              {...(showPassword ? {} : { pattern: "^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*()-_=+{}|;:'\",.<>?])(?=.*[a-zA-Z]).{8,}$" })}
+          {...(showPassword ? {} : { title: "Password must contain at least 8 characters, including one uppercase letter, one lowercase letter, one digit, and one special character" })}
             />
             <span
               onClick={() => setShowPassword((prev) => !prev)}
@@ -183,6 +192,8 @@ function SignupForm() {
                 boxShadow: "inset 0px -1px 0px rgba(255, 255, 255, 0.18)",
               }}
               className="w-full rounded-[0.5rem] bg-richblack-800 p-[12px] pr-10 text-richblack-5"
+              {...(showPassword ? {} : { pattern: "^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*()-_=+{}|;:'\",.<>?])(?=.*[a-zA-Z]).{8,}$" })}
+          {...(showPassword ? {} : { title: "Password must contain at least 8 characters, including one uppercase letter, one lowercase letter, one digit, and one special character" })}
             />
             <span
               onClick={() => setShowConfirmPassword((prev) => !prev)}
